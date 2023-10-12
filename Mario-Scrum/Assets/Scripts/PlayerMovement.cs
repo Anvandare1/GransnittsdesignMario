@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+
+
 public class PlayerMovement : MonoBehaviour
 {
+[SerializeField] Transform groundcheck;
     private Rigidbody2D rb;
     private float jump = 500;
     private float speed = 5f;
@@ -16,17 +19,35 @@ public class PlayerMovement : MonoBehaviour
         canjump = true;
     }
 
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && canjump == true)
+        {
+            rb.AddForce(new Vector2(rb.velocity.x, jump));
+          
+        }
+       
+      
+    }
+  private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.transform.CompareTag("Ground")) 
+            {
+                canjump=true;
+            }
+
+            
+        }
+        private void OnCollisionExit2D(Collision2D other) {
+            if (other.transform.CompareTag("Ground")){
+                canjump=false;
+            }
+        }
     void FixedUpdate() // Update is called once per frame
     {
 
         Vector3 movement = new Vector3();
 
-        if(Input.GetKeyDown(KeyCode.Space) && canjump == true)
-        {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
-            canjump = false;
-            StartCoroutine(JumpReset());
-        }
         if(Input.GetKey(KeyCode.S))
         {
             
@@ -42,11 +63,11 @@ public class PlayerMovement : MonoBehaviour
     
         movement.Normalize();
         transform.position += movement * Time.deltaTime * speed;
+
+
+
+    
     }
 
-    IEnumerator JumpReset()
-    {
-        yield return new WaitForSeconds(1.5f);
-        canjump = true;
-    }
+  
 }
