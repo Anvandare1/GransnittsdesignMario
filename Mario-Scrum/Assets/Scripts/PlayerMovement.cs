@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 
 
@@ -12,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float jump = 500;
     private float speed = 5f;
 
-    private bool canjump;
+    public bool canjump;
     void Start()  // Start is called before the first frame update
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,26 +24,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && canjump == true)
         {
-            rb.AddForce(new Vector2(rb.velocity.x, jump));
-          
+            rb.AddForce(new Vector2(rb.velocity.x, jump)); 
         }
-       
-      
-    }
-  private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.transform.CompareTag("Ground")) 
-            {
-                canjump=true;
-            }
 
-            
-        }
-        private void OnCollisionExit2D(Collision2D other) {
-            if (other.transform.CompareTag("Ground")){
-                canjump=false;
-            }
-        }
+        Vector3 cameraPos = transform.position;
+        cameraPos.z = -1;
+        Camera.main.transform.position = cameraPos;      
+    }
+
+  
     void FixedUpdate() // Update is called once per frame
     {
 
@@ -62,12 +52,28 @@ public class PlayerMovement : MonoBehaviour
         }
     
         movement.Normalize();
-        transform.position += movement * Time.deltaTime * speed;
-
-
-
-    
+        transform.position += movement * Time.deltaTime * speed;    
     }
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+        
+        if (other.gameObject.CompareTag("Enemy head"))
+        {
+            Destroy(other.transform.parent.gameObject);    
+        }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("SampleScene"); 
+        }
 
-  
+           
+    }  
+
+         
 }
+   
+  
+   
+  
+
