@@ -13,12 +13,21 @@ public class PlayerMovement : MonoBehaviour
     private float jump = 500;
     private float speed = 5f;
 
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+    public float fireForce = 20f;
+
     public bool canjump;
     void Start()  // Start is called before the first frame update
     {
         rb = GetComponent<Rigidbody2D>();
         canjump = true;
     }
+     public void Fire()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.right * fireForce, ForceMode2D.Impulse);
+     }
 
     void Update()
     {
@@ -29,7 +38,14 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 cameraPos = transform.position;
         cameraPos.z = -1;
-        Camera.main.transform.position = cameraPos;      
+        Camera.main.transform.position = cameraPos;   
+
+if(Input.GetKeyDown(KeyCode.F))
+        {
+            Fire();
+        }
+
+   
     }
 
   
