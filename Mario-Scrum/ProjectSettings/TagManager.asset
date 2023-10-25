@@ -9,6 +9,8 @@ TagManager:
   - Enemy head
   - Enemy
   - bullet
+  - wall
+  - coin
   layers:
   - Default
   - TransparentFX

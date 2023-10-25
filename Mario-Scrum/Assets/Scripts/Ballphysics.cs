@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Ballphysics : MonoBehaviour
 {
+    public GameObject bullet;
+    public GameObject Enemy;
     float theta=0;
     void Update()
     {
@@ -17,4 +19,15 @@ public class Ballphysics : MonoBehaviour
          
         
     }
+     private void OnCollisionEnter2D(Collision2D other) 
+    {
+        if(other.transform.CompareTag("wall"))
+        {
+            Destroy(bullet);
+        } 
+        else if(other.transform.CompareTag("Enemy")){
+            Destroy(bullet);
+        }
+        
+    }      
 }
