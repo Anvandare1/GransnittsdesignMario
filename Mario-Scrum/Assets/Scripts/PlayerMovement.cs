@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform firePoint;
     public float fireForce = 20f;
 
+    public Powerup power;
+
     public bool canjump;
     void Start()  // Start is called before the first frame update
     {
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         cameraPos.z = -1;
         Camera.main.transform.position = cameraPos;   
 
-if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F)&& haspowerup)
         {
             Fire();
         }
@@ -80,11 +82,28 @@ if(Input.GetKeyDown(KeyCode.F))
         else if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
-            SceneManager.LoadScene("SampleScene"); 
+            SceneManager.LoadScene("level1"); 
         }
 
            
     }  
+
+    private void OnTriggerEnter2D (Collider2D other)
+    
+    {
+
+        if (other.gameObject.CompareTag("Coins"))
+        
+        {
+            Destroy(other.gameObject);
+
+
+        }
+
+        
+    }
+
+
 
          
 }

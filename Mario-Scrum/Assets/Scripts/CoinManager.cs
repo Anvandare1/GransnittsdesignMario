@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class CoinManager : MonoBehaviour
 {
 
@@ -17,10 +18,10 @@ public class CoinManager : MonoBehaviour
             instance= this;
         }
     }
-    public void ChangeScore(int coinvalue)
+    public void ChangeScore(int coinValue)
     {
 
-        score+= coinvalue;
+        score+= coinValue;
         text.text="X"+score.ToString();
     }
 

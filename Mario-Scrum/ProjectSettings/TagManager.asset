@@ -10,7 +10,9 @@ TagManager:
   - Enemy
   - bullet
   - wall
+  - Coins
   - coin
+  - powerup
   layers:
   - Default
   - TransparentFX
