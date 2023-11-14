@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         cameraPos.z = -1;
         Camera.main.transform.position = cameraPos;   
 
-        if(Input.GetKeyDown(KeyCode.F)&& haspowerup)
+        if(Input.GetKeyDown(KeyCode.F))
         {
             Fire();
         }
