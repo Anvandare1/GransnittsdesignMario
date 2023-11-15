@@ -13,6 +13,7 @@ TagManager:
   - Coins
   - coin
   - powerup
+  - Flower
   layers:
   - Default
   - TransparentFX

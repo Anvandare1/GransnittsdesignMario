@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 140644854}
   m_Layer: 0
   m_Name: Powerups
-  m_TagString: powerup
+  m_TagString: Flower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,9 +231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a138cd279e63b47966c3c5e16e2e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerup: 0
-  haspowerup: 0
-  powerupdurtion: 0
 --- !u!61 &140644854
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19588,6 +19585,8 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3447916711978343505, guid: 744f1b2574be7ca42bacca0bf8cfbba1, type: 3}
   firePoint: {fileID: 117611813}
   fireForce: 20
+  power: {fileID: 0}
+  haspowerup: 0
   canjump: 0
 --- !u!50 &994759164
 Rigidbody2D:

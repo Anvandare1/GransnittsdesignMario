@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -18,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     public float fireForce = 20f;
 
     public Powerup power;
+
+    public bool haspowerup = false;
 
     public bool canjump;
     void Start()  // Start is called before the first frame update
@@ -42,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         cameraPos.z = -1;
         Camera.main.transform.position = cameraPos;   
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F)&& haspowerup)
         {
             Fire();
         }
@@ -85,26 +88,18 @@ public class PlayerMovement : MonoBehaviour
             SceneManager.LoadScene("level1"); 
         }
 
+
            
     }  
 
-    private void OnTriggerEnter2D (Collider2D other)
-    
-    {
-
-        if (other.gameObject.CompareTag("Coins"))
+    private void OnTriggerEnter2D(Collider2D other) {
         
-        {
+        if(other.gameObject.CompareTag("Flower")){
+            haspowerup = true;
             Destroy(other.gameObject);
-
-
         }
 
-        
     }
-
-
-
          
 }
    
