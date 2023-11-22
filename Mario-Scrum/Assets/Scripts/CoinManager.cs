@@ -18,11 +18,13 @@ public class CoinManager : MonoBehaviour
             instance= this;
         }
     }
-    public void ChangeScore(int coinValue)
+    public void ChangeScore(int antalcoin)
     {
+        score+= antalcoin;
 
-        score+= coinValue;
-        text.text="X"+score.ToString();
+
+        text.text=score.ToString();
+        
     }
 
    
