@@ -12,6 +12,7 @@ public class Groundcheck : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.transform.CompareTag("Ground")) 
         {
             playerMovement.canjump=true;
@@ -21,6 +22,7 @@ public class Groundcheck : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other) 
     {
+        
         if (other.transform.CompareTag("Ground"))
         {
             playerMovement.canjump=false;
