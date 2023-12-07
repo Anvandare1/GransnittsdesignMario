@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyPatrol : MonoBehaviour
-
+public class Enemy2Patrol : MonoBehaviour
 {
-    public GameObject pointA;
-    public GameObject pointB;
+    public GameObject point1;
+    public GameObject point2;
     private Rigidbody2D rb;
     private Transform currentPoint;
     public float speed;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        currentPoint = pointB.transform;
+        currentPoint = point2.transform;
     }
 
     void Update()
     {
         Vector2 point = currentPoint.position - transform.position;
-        if(currentPoint == pointB.transform)
+        if(currentPoint == point2.transform)
         {
             rb.velocity = new Vector2(speed * Time.deltaTime, 0);
         }
@@ -30,13 +28,13 @@ public class EnemyPatrol : MonoBehaviour
             rb.velocity = new Vector2(-speed * Time.deltaTime, 0);
         }
        
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointB.transform)
+        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == point2.transform)
         {
-            currentPoint = pointA.transform;
+            currentPoint = point1.transform;
         }
-        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == pointA.transform)
+        if(Vector2.Distance(transform.position, currentPoint.position) < 0.5f && currentPoint == point1.transform)
         {
-            currentPoint = pointB.transform;
-        }     
+            currentPoint = point2.transform;
+        }
     }
 }
