@@ -75,14 +75,11 @@ public class PlayerMovement : MonoBehaviour
         movement.Normalize();
         transform.position += movement * Time.deltaTime * speed;    
     }
-    private void OnCollisionEnter2D(Collision2D other) 
+     private void OnCollisionEnter2D(Collision2D other) 
     {
+        print(other.gameObject.tag);
         
-        if (other.gameObject.CompareTag("Enemy head"))
-        {
-            Destroy(other.transform.parent.gameObject);    
-        }
-        else if (other.gameObject.CompareTag("Enemy"))
+         if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
             SceneManager.LoadScene("level1"); 
@@ -97,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("Flower")){
             haspowerup = true;
             Destroy(other.gameObject);
+        }
+        if (other.gameObject.CompareTag("Enemy head"))
+        {
+            Destroy(other.transform.parent.gameObject);    
         }
 
     }
